@@ -12,8 +12,7 @@
 <h2>주소록:목록화면</h2>
 <hr>
 <form>
-<a href="addrbook_form.jsp">주소록 등록</a>
-<p>
+<a href="addrbook_form.jsp">주소록 등록</a><p>
 <table border="1">
 <tr><th>번호</th>
 <th>이름</th>
@@ -50,7 +49,6 @@
 </tr>
 
 </table>
-</p>
 </form>
 </div>
 </body>
