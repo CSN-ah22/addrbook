@@ -6,5 +6,7 @@
 + view 부분
   - addrbook_list.jsp
   - addrbook.css
+  - addrbook_form.jsp
+  - addrbook_edit_form.jsp
 + 데이터베이스 부분
 + 컨트롤러 부분
