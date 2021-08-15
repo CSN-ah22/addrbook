@@ -12,4 +12,4 @@
   - addrbook_control.jsp
 + 데이터베이스 부분
 + 오류 처리 화면
-  -addrbook_error
+  - addrbook_error
