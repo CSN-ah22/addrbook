@@ -50,4 +50,30 @@ public class AddrBean {
 		
 		}
 	}
+	//수정된 주소록 내용 갱신을 위한 메서드, 주소를 추가하고난 뒤나 삭제하고난뒤 등 공통적으로 쓰이는 공용 메서드
+	public boolean updateDB(AddrBook addrbook) {
+		connect();
+		
+		String sql="update addrbook set ab_name=?, ab_email=?,ab_birth=?,ab_tel=?,ab_comdept=?,ab_memo=? where ab_id=?";
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1, addrbook.getAb_name());
+			pstmt.setString(2, addrbook.getAb_email());
+			pstmt.setString(3, addrbook.getAb_birth());
+			pstmt.setString(4, addrbook.getAb_tel());
+			pstmt.setString(5, addrbook.getAb_comdept());
+			pstmt.setString(6, addrbook.getAb_memo());
+			pstmt.setInt(7, addrbook.getAb_id());
+			pstmt.executeUpdate();
+		}catch(SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
+		finally {
+			disconnect();
+		}
+		return true;
+	}
+	
 }
