@@ -11,5 +11,11 @@
 + 컨트롤러 부분
   - addrbook_control.jsp
 + 데이터베이스 부분
+
+  - [DAO]
+    - AddrBean.class
+  - [DO]
+    - AddrBook.class
+    
 + 오류 처리 화면
   - addrbook_error
