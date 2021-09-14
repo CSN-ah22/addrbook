@@ -34,14 +34,14 @@ public class AddrBean {
 	
 	//데이터베이스 연결 끊는 메서드
 	void disconnect() {
-		if(pstmt != null) { //질의문담당 먼저 끊는다
+		if(pstmt != null) { //SQL 실행문 먼저 끊는다
 			try {
 			pstmt.close();
 		}catch(SQLException e) {
 			e.printStackTrace();
 			}
 		}
-		if(conn !=null) { //DB연결 담당 끊기
+		if(conn !=null) { //DB연결 끊기
 			try {
 				conn.close();
 			}catch(SQLException e) {
@@ -81,7 +81,7 @@ public class AddrBean {
 		String sql="delete from addrbook where ab_id=?";
 		
 		try {
-			pstmt=conn.prepareStatement(sql);//질의문 담당 객체 생성
+			pstmt=conn.prepareStatement(sql);//SQL 실행문 객체 생성
 			pstmt.setInt(1, gb_id);
 			pstmt.executeUpdate();
 		}catch(SQLException e) {
@@ -91,6 +91,33 @@ public class AddrBean {
 		finally {
 			disconnect();
 		}
+		return true;
+	}
+	//신규 주소록 메시지 추가 메서드
+	public boolean insertDB(AddrBook addrbook) {
+		connect();
+		
+		//sql문에서, gb_id는 인조키 이며 자동으로 등록되므로 입력하지 않는다
+		String sql="insert into addrbook(ab_name,ab_email,ab_birth,ab_tel,ab_comdept,ab_memo)"
+				+ "values(?,?,?,?,?,?)";
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1,addrbook.getAb_name());
+			pstmt.setString(2,addrbook.getAb_email());
+			pstmt.setString(3,addrbook.getAb_birth());
+			pstmt.setString(4,addrbook.getAb_tel());
+			pstmt.setString(5,addrbook.getAb_comdept());
+			pstmt.setString(6,addrbook.getAb_memo());
+			pstmt.executeUpdate();
+		}catch(SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
+		finally {
+			disconnect();
+		}
+		
 		return true;
 	}
 	
