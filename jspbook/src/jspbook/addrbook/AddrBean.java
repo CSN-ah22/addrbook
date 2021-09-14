@@ -75,5 +75,23 @@ public class AddrBean {
 		}
 		return true;
 	}
+	//주소목록중 특정 게시글 삭제하는 메서드
+	public boolean deleteDB(int gb_id) {
+		connect();
+		String sql="delete from addrbook where ab_id=?";
+		
+		try {
+			pstmt=conn.prepareStatement(sql);//질의문 담당 객체 생성
+			pstmt.setInt(1, gb_id);
+			pstmt.executeUpdate();
+		}catch(SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
+		finally {
+			disconnect();
+		}
+		return true;
+	}
 	
 }
